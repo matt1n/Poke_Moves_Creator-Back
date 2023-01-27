@@ -2,6 +2,7 @@ import express from 'express';
 import cors from "cors";
 import {movesRoutes} from './routers/movesRoutes.js';
 import { authRoutes } from './routers/authRoutes.js';
+import likesRoutes from './routers/likesRoutes.js';
 
 const server = express();
 
@@ -11,6 +12,7 @@ server
 .get("/health", (req,res)=>res.send("WOW, is workinaag"))
 .use(movesRoutes)
 .use(authRoutes)
+.use(likesRoutes)
 
 const PORT = process.env.PORT || 4000
 

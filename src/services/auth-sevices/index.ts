@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import { conflict } from "../../errors/conflict.js"
+import { conflictError } from "../../errors/conflict.js"
 import { notFoundError } from "../../errors/not-found-error.js"
 import { findTrainer, generateToken, insertTrainer } from "../../repositories/auth.repositories.js"
 
@@ -19,7 +19,7 @@ async function signUpTrainer(body: {name: string, email: string, password: strin
     body.password = passwordHash
     const move = await findTrainer(email)
     if (move){
-        throw conflict()
+        throw conflictError()
     }
     insertTrainer(body)
 }
