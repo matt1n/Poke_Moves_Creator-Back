@@ -3,6 +3,7 @@ import cors from "cors";
 import {movesRoutes} from './routers/movesRoutes.js';
 import { authRoutes } from './routers/authRoutes.js';
 import likesRoutes from './routers/likesRoutes.js';
+import commentsRoutes from './routers/commentsRoutes.js';
 
 const server = express();
 
@@ -13,6 +14,7 @@ server
 .use(movesRoutes)
 .use(authRoutes)
 .use(likesRoutes)
+.use(commentsRoutes)
 
 const PORT = process.env.PORT || 4000
 
