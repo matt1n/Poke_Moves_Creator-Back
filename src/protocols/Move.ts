@@ -2,9 +2,11 @@ export type Move = {
     name: string,
     description: string,
     category: string,
-    power: string,
-    accuracy: string,
+    power: number,
+    accuracy: number,
     type: string,
-    pp: string,
-    trainer_name: string
+    pp: number,
+    trainer_id: number
   }
+
+export type BodyMove = Omit<Move, "trainer_id">

@@ -1,4 +1,4 @@
-import { Move } from "../../protocols/Move.js";
+import { BodyMove, Move } from "../../protocols/Move.js";
 import { deleteMoveById, insertMove, selectAllMoves, updateMoveById } from "../../repositories/moves.repositories.js";
 import { selectMovesByCategory, selectMovesById } from "../../repositories/moves.repositories.js";
 
@@ -9,25 +9,35 @@ function notFoundError(entity: string) {
 	};
 }
 
-export async function putIdValidate(body: Move, id: string) {
+function unauthorized(){
+    return {
+		type: "unauthorized",
+		message: `Unauthorized`
+	};
+}
+
+export async function putIdValidate(body: BodyMove, id: number) {
     const move = await selectMovesById(id)
-    if (move.rows.length===0){
+    if (!move){
         throw notFoundError('move')
     }
     await updateMoveById(body, id)
 }
 
-export async function deleteIdValidate(id: string) {
+export async function deleteIdValidate(id: number, userId: number) {
     const move = await selectMovesById(id)
-    if (move.rows.length===0){
+    if (!move){
         throw notFoundError('move')
     }
-    await deleteMoveById(id)
+    if (move.trainer_id!==userId){
+        throw unauthorized()
+    }
+     deleteMoveById(id)
 }
 
 export async function categoryValidate(category: string){
     const moves = await selectMovesByCategory(category)
-        if (moves.rows.length===0){
+        if (moves.length===0){
         throw notFoundError('moves')
     }
     return moves

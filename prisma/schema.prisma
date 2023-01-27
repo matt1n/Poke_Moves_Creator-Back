@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model moves {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  category    String
+  power       Int?
+  accuracy    Int
+  type        String
+  pp          Int
+  trainer_id  Int
+  created_at  DateTime?  @default(now()) @db.Timestamp(6)
+  comments    comments[]
+  likes       likes[]
+  trainers    trainers   @relation(fields: [trainer_id], references: [id], onDelete: Cascade, map: "FK_YXSL")
+}
+
+model comments {
+  id         Int       @id @default(autoincrement())
+  move_id    Int
+  trainer_id Int
+  message    String
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  moves      moves     @relation(fields: [move_id], references: [id], onDelete: Cascade, map: "FK_5AQ0")
+  trainers   trainers  @relation(fields: [trainer_id], references: [id], onDelete: Cascade, map: "FK_M1TX")
+}
+
+model likes {
+  id         Int       @id @default(autoincrement())
+  move_id    Int
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  moves      moves     @relation(fields: [move_id], references: [id], onDelete: Cascade, map: "FK_XF2D")
+}
+
+model trainers {
+  id         Int        @id(map: "users_pkey") @default(autoincrement())
+  name       String
+  email      String     @unique(map: "users_email_key")
+  password   String
+  image      String
+  created_at DateTime?  @default(now()) @db.Timestamp(6)
+  comments   comments[]
+  moves      moves[]
+}
+
+enum category {
+  status
+  physical
+  special
+}
+
+enum poketypes {
+  NORMAL
+  FIRE
+  WATER
+  GRASS
+  FLYING
+  FIGHTING
+  POISON
+  ELECTRIC
+  GROUND
+  ROCK
+  PSYCHIC
+  ICE
+  BUG
+  GHOST
+  STELL
+  DRAGON
+  DARK
+  FAIRY
+}
+
+enum types {
+  Normal
+  Fire
+  Water
+  Grass
+  Flying
+  Fighting
+  Poison
+  Electric
+  Ground
+  Rock
+  Psychic
+  Ice
+  Bug
+  Ghost
+  Steel
+  Dragon
+  Dark
+  Fairy
+}
