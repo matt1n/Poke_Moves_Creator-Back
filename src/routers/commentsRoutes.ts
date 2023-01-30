@@ -5,9 +5,9 @@ import { tokenValidation } from "../middlewares/tokenValidation.middleware.js";
 const commentsRoutes = Router()
 
 commentsRoutes
-.get("/move/:moveId/comments", tokenValidation, getMoveComments)
-.post("/move/:moveId/comment", tokenValidation, postComment)
-.put("/move/:moveId/comment/:commentId", tokenValidation, updateComment)
-.delete("/move/:moveId/comment/:commentId", tokenValidation, deleteComment)
+.get("/moves/:moveId/comments", tokenValidation, getMoveComments)
+.post("/moves/:moveId/comments", tokenValidation, postComment)
+.put("/moves/:moveId/comments/:commentId", tokenValidation, updateComment)
+.delete("/moves/:moveId/comments/:commentId", tokenValidation, deleteComment)
 
 export default commentsRoutes

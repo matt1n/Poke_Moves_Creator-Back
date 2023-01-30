@@ -7,10 +7,10 @@ import { MoveSchema } from "../models/move.schema.js";
 const movesRoutes = Router()
 
 movesRoutes
-.post("/move", tokenValidation, bodyValidate(MoveSchema), addMove)
+.post("/moves", tokenValidation, bodyValidate(MoveSchema), addMove)
 .get("/moves", getMove)
 .get("/moves/:category", getMoveByCategory)
-.put("/move/:id",tokenValidation, bodyValidate(MoveSchema), updateMove)
-.delete("/move/:id",tokenValidation, deleteMove)
+.put("/moves/:id",tokenValidation, bodyValidate(MoveSchema), updateMove)
+.delete("/moves/:id",tokenValidation, deleteMove)
 
 export {movesRoutes}

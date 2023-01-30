@@ -1,13 +1,26 @@
+POST: /
+Body: {
+  email: string,
+  password: string
+}
+
+POST: /signup
+Body: {name: string
+    email: string
+    password: string
+    image: string
+}
+
+
 POST: /move
 Body: {
-  "name": "Nome do movimento",
-  "description": "Descrição do movimento",
-  "category": "uma dessas: ('status','special', 'physical')",
-  "power": número inteiro,
-  "accuracy": 0-100,
-  "type": "um destes: ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'FLYING', 'FIGHTING', 'POISON', 'ELECTRIC', 'GROUND', 'ROCK', 'PSYCHIC', 'ICE', 'BUG', 'GHOST', 'STELL', 'DRAGON', 'DARK', 'FAIRY')",
-  "pp": 1-99,
-  "trainer_name": "Seu nome ou apelido"
+  "name": string,
+  "description": string,
+  "category": string ('status','special', 'physical')",
+  "power": number,
+  "accuracy": number (0-100),
+  "type": string ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'FLYING', 'FIGHTING', 'POISON', 'ELECTRIC', 'GROUND', 'ROCK', 'PSYCHIC', 'ICE', 'BUG', 'GHOST', 'STELL', 'DRAGON', 'DARK', 'FAIRY'),
+  "pp": number (1-99),
 }
 
 GET: /moves
@@ -18,15 +31,35 @@ category: ('status','special', 'physical')
 PUT: /move/:id
 id: número inteiro
 Body: {
-  "name": "Nome do movimento",
-  "description": "Descrição do movimento",
-  "category": "uma dessas: ('status','special', 'physical')",
-  "power": número inteiro,
-  "accuracy": 0-100,
-  "type": "um destes: ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'FLYING', 'FIGHTING', 'POISON', 'ELECTRIC', 'GROUND', 'ROCK', 'PSYCHIC', 'ICE', 'BUG', 'GHOST', 'STELL', 'DRAGON', 'DARK', 'FAIRY')",
-  "pp": 1-99,
-  "trainer_name": "Seu nome ou apelido"
+  "name"?: string,
+  "description"?: string,
+  "category"?: string ('status','special', 'physical')",
+  "power"?: number,
+  "accuracy"?: number (0-100),
+  "type"?: string ('NORMAL', 'FIRE', 'WATER', 'GRASS', 'FLYING', 'FIGHTING', 'POISON', 'ELECTRIC', 'GROUND', 'ROCK', 'PSYCHIC', 'ICE', 'BUG', 'GHOST', 'STELL', 'DRAGON', 'DARK', 'FAIRY'),
+  "pp"?: number (1-99),
 }
 
 DELETE: /move/:id
 id: número inteiro
+
+
+GET: /moves/:moveId/comments
+
+POST: /moves/:moveId/comments
+Body: {
+  message: string
+}
+
+PUT: /moves/:moveId/comments/:commentId
+Body: {
+  message: string
+}
+
+DELETE: /moves/:moveId/comments/:commentId
+
+
+
+POST /like/:id
+
+DELETE /like/:id

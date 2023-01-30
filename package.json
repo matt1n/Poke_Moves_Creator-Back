@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx nodemon src/app.ts",
+    "migration:run": "npx prisma migrate dev",
     "prisma:seed": "npx prisma db seed"
   },
   "prisma": {
