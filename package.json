@@ -5,7 +5,11 @@
   "main": "app.ts",
   "type": "module",
   "scripts": {
-    "dev": "npx nodemon src/app.ts"
+    "dev": "npx nodemon src/app.ts",
+    "prisma:seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "repository": {
     "type": "git",
